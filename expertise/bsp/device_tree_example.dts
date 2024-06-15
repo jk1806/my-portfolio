@@ -1,0 +1,165 @@
+/*
+ * Device Tree Example for Embedded Platform
+ * Author: Jeevesh Srivastava
+ * 
+ * Comprehensive device tree configuration demonstrating
+ * BSP expertise across multiple peripherals and subsystems.
+ */
+
+/dts-v1/;
+
+/ {
+    model = "Embedded Platform BSP";
+    compatible = "vendor,platform";
+    #address-cells = <1>;
+    #size-cells = <1>;
+
+    chosen {
+        bootargs = "console=ttyS0,115200 earlyprintk";
+        stdout-path = &uart0;
+    };
+
+    memory@80000000 {
+        device_type = "memory";
+        reg = <0x80000000 0x20000000>; /* 512MB */
+    };
+
+    cpus {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        cpu@0 {
+            device_type = "cpu";
+            compatible = "arm,cortex-a53";
+            reg = <0x0>;
+            enable-method = "psci";
+            cpu-idle-states = <&cpu_sleep>;
+        };
+
+        cpu@1 {
+            device_type = "cpu";
+            compatible = "arm,cortex-a53";
+            reg = <0x1>;
+            enable-method = "psci";
+            cpu-idle-states = <&cpu_sleep>;
+        };
+    };
+
+    psci {
+        compatible = "arm,psci-1.0";
+        method = "smc";
+    };
+
+    clocks {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        osc24m: osc24m {
+            compatible = "fixed-clock";
+            #clock-cells = <0>;
+            clock-frequency = <24000000>;
+        };
+
+        pll_cpu: pll_cpu {
+            compatible = "fixed-clock";
+            #clock-cells = <0>;
+            clock-frequency = <1008000000>;
+        };
+    };
+
+    soc {
+        compatible = "simple-bus";
+        #address-cells = <1>;
+        #size-cells = <1>;
+        ranges;
+
+        uart0: serial@01c28000 {
+            compatible = "vendor,uart";
+            reg = <0x01c28000 0x400>;
+            interrupts = <0 0 4>;
+            clocks = <&osc24m>;
+            status = "okay";
+        };
+
+        uart1: serial@01c28400 {
+            compatible = "vendor,uart";
+            reg = <0x01c28400 0x400>;
+            interrupts = <0 1 4>;
+            clocks = <&osc24m>;
+            status = "disabled";
+        };
+
+        i2c0: i2c@01c2ac00 {
+            compatible = "vendor,i2c";
+            reg = <0x01c2ac00 0x400>;
+            interrupts = <0 7 4>;
+            clocks = <&osc24m>;
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+        };
+
+        spi0: spi@01c68000 {
+            compatible = "vendor,spi";
+            reg = <0x01c68000 0x400>;
+            interrupts = <0 65 4>;
+            clocks = <&osc24m>;
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+        };
+
+        gpio0: gpio@01c20800 {
+            compatible = "vendor,gpio";
+            reg = <0x01c20800 0x400>;
+            interrupts = <0 11 4>;
+            gpio-controller;
+            #gpio-cells = <2>;
+            interrupt-controller;
+            #interrupt-cells = <2>;
+        };
+
+        timer0: timer@01c20c00 {
+            compatible = "vendor,timer";
+            reg = <0x01c20c00 0x400>;
+            interrupts = <0 18 4>;
+            clocks = <&osc24m>;
+        };
+
+        watchdog: watchdog@01c20ca0 {
+            compatible = "vendor,wdt";
+            reg = <0x01c20ca0 0x20>;
+            interrupts = <0 19 4>;
+            clocks = <&osc24m>;
+        };
+
+        mmc0: mmc@01c0f000 {
+            compatible = "vendor,mmc";
+            reg = <0x01c0f000 0x1000>;
+            interrupts = <0 32 4>;
+            clocks = <&osc24m>;
+            max-frequency = <50000000>;
+            bus-width = <4>;
+            status = "okay";
+        };
+
+        ethernet0: ethernet@01c30000 {
+            compatible = "vendor,eth";
+            reg = <0x01c30000 0x1000>;
+            interrupts = <0 27 4>;
+            clocks = <&osc24m>;
+            phy-mode = "mii";
+            status = "okay";
+        };
+    };
+
+    cpu-idle-states {
+        cpu_sleep: cpu-sleep {
+            compatible = "arm,idle-state";
+            entry-latency-us = <200>;
+            exit-latency-us = <200>;
+            min-residency-us = <1000>;
+        };
+    };
+};
+
