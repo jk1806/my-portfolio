@@ -1,7 +1,9 @@
 # Boot Bringup & Bootloader Development
 
 ## Overview
-Expert-level boot bringup expertise covering bootloader development, secure boot implementation, and system initialization from power-on to kernel execution.
+Working on boot bringup for custom platform. U-Boot porting and secure boot implementation.
+
+**Status**: Basic boot working, secure boot in progress
 
 ## Key Areas
 

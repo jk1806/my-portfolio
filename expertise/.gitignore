@@ -1,0 +1,30 @@
+# Build artifacts
+*.o
+*.ko
+*.mod.c
+*.mod
+*.symvers
+*.order
+Module.symvers
+modules.order
+
+# Kernel build
+.ko
+*.cmd
+.tmp_versions/
+
+# U-Boot build
+u-boot.bin
+u-boot.img
+*.dtb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Debug
+*.log
+*.dmesg
+

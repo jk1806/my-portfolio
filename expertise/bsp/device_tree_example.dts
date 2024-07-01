@@ -1,9 +1,9 @@
 /*
- * Device Tree Example for Embedded Platform
+ * Device tree for custom board
  * Author: Jeevesh Srivastava
  * 
- * Comprehensive device tree configuration demonstrating
- * BSP expertise across multiple peripherals and subsystems.
+ * Based on reference design, modified for our board
+ * TODO: add more peripherals as we test them
  */
 
 /dts-v1/;
@@ -86,7 +86,7 @@
             reg = <0x01c28400 0x400>;
             interrupts = <0 1 4>;
             clocks = <&osc24m>;
-            status = "disabled";
+            status = "disabled";  // not used yet, might enable later
         };
 
         i2c0: i2c@01c2ac00 {

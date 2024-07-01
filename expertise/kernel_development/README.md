@@ -1,7 +1,9 @@
 # Linux Kernel Development
 
 ## Overview
-Expert-level Linux kernel development covering device drivers, kernel internals, memory management, and system programming.
+Learning and working on Linux kernel development - device drivers, kernel internals, memory management.
+
+**Current focus**: Character device drivers and memory management
 
 ## Key Areas
 
