@@ -116,9 +116,15 @@ export const projects: Project[] = [
     title: 'ARM Architecture & Embedded Systems',
     description:
       'Comprehensive ARM architecture implementations including Cortex-M/A processors, MMU management, cache optimization, TrustZone security, NEON SIMD, and low-level system programming.',
+    tagline: 'Low-level ARM architecture implementations with MMU, cache, TrustZone, and NEON SIMD optimizations.',
     technologies: ['ARM', 'Cortex-M', 'Cortex-A', 'MMU', 'Cache', 'TrustZone', 'NEON', 'Assembly', 'C'],
     githubUrl: 'https://github.com/jk1806/Portfolio/tree/main/arm_architecture',
     tagColor: 'purple',
+    year: '2024',
+    status: 'completed',
+    madeFor: 'Personal',
+    startDate: '2024',
+    endDate: 'Present',
   },
   {
     id: '7',
