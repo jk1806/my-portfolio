@@ -7,5 +7,12 @@ export interface Project {
   liveUrl?: string
   imageUrl?: string
   tagColor?: 'green' | 'blue' | 'purple'
+  year?: string
+  status?: 'in-development' | 'launched' | 'completed'
+  madeFor?: string
+  tagline?: string
+  detailedDescription?: string[]
+  startDate?: string
+  endDate?: string
 }
 
