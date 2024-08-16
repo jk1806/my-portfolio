@@ -35,6 +35,7 @@ add_library(crypto_lib STATIC
     crypto/src/verify.c
     crypto/src/encrypt.c
     crypto/src/decrypt.c
+    crypto/src/hash.c
     crypto/src/key_derivation.c
 )
 target_link_libraries(crypto_lib ${MBEDTLS_LIBRARIES})
