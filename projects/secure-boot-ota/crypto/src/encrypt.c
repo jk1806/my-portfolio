@@ -5,6 +5,10 @@
 #include <mbedtls/entropy.h>
 #include <string.h>
 
+// AES encryption functions
+// v1.1 - Fixed IV handling (2024-03-20)
+// v1.0 - Initial implementation
+
 int crypto_encrypt_aes_ctr(const uint8_t *plaintext, size_t pt_len,
                            const uint8_t *key, const uint8_t *iv,
                            uint8_t *ciphertext)
@@ -20,18 +24,21 @@ int crypto_encrypt_aes_ctr(const uint8_t *plaintext, size_t pt_len,
     
     mbedtls_aes_init(&aes);
     
+    // AES-256 key (32 bytes = 256 bits)
     ret = mbedtls_aes_setkey_enc(&aes, key, 256);
     if (ret != 0) {
         mbedtls_aes_free(&aes);
         return CRYPTO_ERROR_INVALID_KEY;
     }
     
+    // CTR mode - stream cipher, can encrypt any size
     ret = mbedtls_aes_crypt_ctr(&aes, pt_len, &nc_off, (uint8_t *)iv,
                                 stream_block, plaintext, ciphertext);
     
     mbedtls_aes_free(&aes);
     
     if (ret != 0) {
+        // FIXME: Should log error code
         return CRYPTO_ERROR_INVALID_PARAM;
     }
     
@@ -46,6 +53,8 @@ int crypto_decrypt_aes_ctr(const uint8_t *ciphertext, size_t ct_len,
     return crypto_encrypt_aes_ctr(ciphertext, ct_len, key, iv, plaintext);
 }
 
+// AES-GCM - authenticated encryption (encryption + integrity in one)
+// Better than CTR+HMAC but slightly slower
 int crypto_encrypt_aes_gcm(const uint8_t *plaintext, size_t pt_len,
                           const uint8_t *key, const uint8_t *iv,
                           const uint8_t *aad, size_t aad_len,
@@ -60,12 +69,14 @@ int crypto_encrypt_aes_gcm(const uint8_t *plaintext, size_t pt_len,
     
     mbedtls_gcm_init(&gcm);
     
+    // AES-256-GCM
     ret = mbedtls_gcm_setkey(&gcm, MBEDTLS_CIPHER_ID_AES, key, 256);
     if (ret != 0) {
         mbedtls_gcm_free(&gcm);
         return CRYPTO_ERROR_INVALID_KEY;
     }
     
+    // IV is 12 bytes for GCM, tag is 16 bytes
     ret = mbedtls_gcm_crypt_and_tag(&gcm, MBEDTLS_GCM_ENCRYPT, pt_len,
                                     iv, 12, aad, aad_len, plaintext,
                                     ciphertext, 16, tag);
