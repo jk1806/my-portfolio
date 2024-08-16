@@ -3,7 +3,7 @@ import { projects } from '@/data/projects'
 import ProjectCard from '@/components/ProjectCard'
 
 export default function Home() {
-  const featuredProjects = projects.slice(0, 4)
+  const featuredProjects = projects.slice(0, 5) // Show all 5 projects
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
