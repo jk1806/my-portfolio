@@ -23,6 +23,8 @@ add_library(bootloader STATIC
     bootloader/src/verify.c
     bootloader/src/decrypt.c
     bootloader/src/version.c
+    bootloader/src/integrity.c
+    bootloader/src/jump.c
 )
 target_link_libraries(bootloader ${MBEDTLS_LIBRARIES})
 target_include_directories(bootloader PUBLIC bootloader/include)
