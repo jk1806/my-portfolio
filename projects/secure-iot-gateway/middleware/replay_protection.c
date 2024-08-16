@@ -5,10 +5,11 @@
 #include <time.h>
 #include <openssl/sha.h>
 
-#define MAX_NONCES 1000
-#define NONCE_TIMEOUT 300  /* 5 minutes */
+// v1.0 - Initial implementation
+// Replay protection using nonce cache
 
-typedef struct {
+#define MAX_NONCES 1000  // TODO: Make configurable
+#define NONCE_TIMEOUT 300  /* 5 minutes - might need tuning */
     uint8_t nonce[32];
     time_t timestamp;
 } nonce_entry_t;
@@ -28,12 +29,12 @@ int check_replay(uint8_t *nonce, size_t nonce_len)
             return -1;
         }
         
-        /* Remove expired entries */
+        /* Remove expired entries - linear search, could be optimized */
         if (now - nonce_cache[i].timestamp > NONCE_TIMEOUT) {
             memmove(&nonce_cache[i], &nonce_cache[i + 1],
                    (nonce_count - i - 1) * sizeof(nonce_entry_t));
             nonce_count--;
-            i--;
+            i--;  // Check same index again after removal
         }
     }
     

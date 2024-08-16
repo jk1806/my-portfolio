@@ -2,6 +2,9 @@
 #include "crypto.h"
 #include <string.h>
 
+// v1.0 - Initial implementation
+// HMAC-based integrity verification
+
 extern uint8_t hmac_key[];
 
 int verify_firmware_integrity(const uint8_t *firmware, size_t size)

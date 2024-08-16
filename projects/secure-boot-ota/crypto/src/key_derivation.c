@@ -4,6 +4,9 @@
 #include <mbedtls/md.h>
 #include <string.h>
 
+// v1.0 - Initial implementation
+// HKDF and PBKDF2 key derivation functions
+
 int crypto_hkdf(const uint8_t *salt, size_t salt_len,
                 const uint8_t *ikm, size_t ikm_len,
                 const uint8_t *info, size_t info_len,
@@ -62,6 +65,8 @@ int crypto_pbkdf2(const uint8_t *password, size_t pwd_len,
 int crypto_init(void)
 {
     /* Initialize any required crypto state */
+    // TODO: Add entropy source initialization if needed
+    // TODO: Seed RNG if required
     return CRYPTO_SUCCESS;
 }
 

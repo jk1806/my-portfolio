@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Encrypt firmware with AES-GCM"""
+"""Encrypt firmware with AES-GCM
+v1.0 - Initial implementation
+"""
 
 import sys
 import os

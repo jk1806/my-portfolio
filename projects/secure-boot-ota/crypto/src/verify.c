@@ -6,6 +6,9 @@
 #include <mbedtls/error.h>
 #include <string.h>
 
+// v1.1 - Added ECDSA support (2024-03-20)
+// v1.0 - Initial RSA verification
+
 static int load_public_key(const uint8_t *key_data, size_t key_len, mbedtls_pk_context *pk)
 {
     int ret;

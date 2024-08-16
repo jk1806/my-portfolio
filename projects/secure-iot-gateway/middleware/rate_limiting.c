@@ -5,9 +5,12 @@
 #include <time.h>
 #include <sys/time.h>
 
-#define MAX_CLIENTS 1000
-#define RATE_LIMIT 100  /* requests per minute */
-#define WINDOW_SIZE 60  /* seconds */
+// v1.0 - Initial implementation
+// Simple rate limiting per client
+
+#define MAX_CLIENTS 1000  // TODO: Use hash table for scalability
+#define RATE_LIMIT 100  /* requests per minute - configurable */
+#define WINDOW_SIZE 60  /* seconds - sliding window */
 
 typedef struct {
     char client_id[64];
@@ -26,9 +29,9 @@ int check_rate_limit(const char *client_id)
     /* Find existing entry */
     for (i = 0; i < client_count; i++) {
         if (strcmp(rate_limits[i].client_id, client_id) == 0) {
-            /* Check if window expired */
+            /* Check if window expired - sliding window */
             if (now - rate_limits[i].window_start > WINDOW_SIZE) {
-                /* Reset window */
+                /* Reset window - TODO: Could use token bucket instead */
                 rate_limits[i].request_count = 0;
                 rate_limits[i].window_start = now;
             }

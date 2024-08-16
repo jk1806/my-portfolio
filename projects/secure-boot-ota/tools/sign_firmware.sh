@@ -1,5 +1,6 @@
 #!/bin/bash
 # Sign firmware with RSA private key
+# v1.0 - Initial version
 
 set -e
 

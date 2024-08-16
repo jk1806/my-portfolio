@@ -3,6 +3,8 @@
 #include "boot.h"
 #include "crypto.h"
 
+// Basic bootloader tests - TODO: Add more comprehensive tests
+
 void test_version_counter(void)
 {
     uint32_t version;
@@ -31,6 +33,8 @@ void test_signature_verification(void)
     size_t sig_len = sizeof(signature);
     
     /* This would require actual keys - simplified test */
+    // TODO: Generate test keys for unit tests
+    // TODO: Add mock crypto functions for testing
     printf("Signature verification test SKIPPED (requires keys)\n");
 }
 

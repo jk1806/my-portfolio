@@ -1,5 +1,6 @@
 #!/bin/bash
 # Generate keys for secure boot and firmware encryption
+# v1.0 - Initial version
 
 set -e
 

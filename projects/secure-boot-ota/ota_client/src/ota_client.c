@@ -6,6 +6,9 @@
 #include <unistd.h>
 #include <curl/curl.h>
 
+// v1.1 - Added better error handling (2024-05-15)
+// v1.0 - Initial OTA client implementation
+
 struct MemoryStruct {
     char *memory;
     size_t size;
@@ -45,9 +48,11 @@ int ota_download_firmware(const char *server_url, const char *version,
         return -1;
     }
     
-    /* Build URL */
+    /* Build URL - TODO: Add URL validation */
     snprintf(url, sizeof(url), "%s/api/firmware/download?version=%s",
              server_url, version ? version : "latest");
+    
+    // FIXME: URL size check - 512 might not be enough
     
     curl_easy_setopt(curl, CURLOPT_URL, url);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteMemoryCallback);

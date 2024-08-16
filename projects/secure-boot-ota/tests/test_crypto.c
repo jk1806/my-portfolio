@@ -3,6 +3,8 @@
 #include <string.h>
 #include "crypto.h"
 
+// Basic crypto tests - TODO: Add more edge cases
+
 void test_hash_sha256(void)
 {
     uint8_t data[] = "Hello, World!";
@@ -12,7 +14,7 @@ void test_hash_sha256(void)
     
     assert(crypto_hash_sha256(data, strlen((char *)data), hash) == CRYPTO_SUCCESS);
     
-    /* Verify hash is not all zeros */
+    /* Verify hash is not all zeros - basic sanity check */
     int all_zero = 1;
     for (int i = 0; i < SHA256_HASH_SIZE; i++) {
         if (hash[i] != 0) {
@@ -21,6 +23,7 @@ void test_hash_sha256(void)
         }
     }
     assert(all_zero == 0);
+    // TODO: Add known-answer test vectors
     
     printf("SHA-256 test PASSED\n");
 }

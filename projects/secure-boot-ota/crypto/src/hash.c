@@ -2,6 +2,9 @@
 #include <mbedtls/sha256.h>
 #include <mbedtls/md.h>
 
+// v1.0 - Initial implementation
+// SHA-256 and HMAC-SHA256 functions
+
 int crypto_hash_sha256(const uint8_t *data, size_t data_len, uint8_t *hash)
 {
     mbedtls_sha256_context ctx;
@@ -20,6 +23,8 @@ int crypto_hash_sha256(const uint8_t *data, size_t data_len, uint8_t *hash)
         ret = mbedtls_sha256_finish(&ctx, hash);
     }
     mbedtls_sha256_free(&ctx);
+    
+    // TODO: Could add incremental hashing for large files
     
     if (ret != 0) {
         return CRYPTO_ERROR_INVALID_PARAM;

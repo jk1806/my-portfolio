@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""Sign firmware with RSA private key"""
+"""Sign firmware with RSA private key
+v1.0 - Initial implementation
+"""
 
 import sys
 import hashlib
