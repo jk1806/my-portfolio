@@ -44,13 +44,14 @@ int crypto_verify_rsa(const uint8_t *data, size_t data_len,
         return CRYPTO_ERROR_INVALID_PARAM;
     }
     
-    /* Load public key */
+    /* Load public key - supports both RSA and ECDSA */
     ret = load_public_key(public_key, key_len, &pk);
     if (ret != CRYPTO_SUCCESS) {
+        // FIXME: Should log which key type failed
         return ret;
     }
     
-    /* Hash the data */
+    /* Hash the data - SHA256 for both RSA and ECDSA */
     md_info = mbedtls_md_info_from_type(MBEDTLS_MD_SHA256);
     if (!md_info) {
         mbedtls_pk_free(&pk);
