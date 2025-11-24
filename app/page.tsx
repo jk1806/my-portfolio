@@ -13,10 +13,10 @@ export default function Home() {
           <div className="lg:col-span-1">
             <div className="mb-8">
               <h1 className="text-4xl font-normal text-[#60a5fa] mb-2">
-                Your Name
+                Jeevesh Srivastava
               </h1>
               <p className="text-base text-white mb-1">
-                Software engineer — <span className="text-[#fbbf24]">AI tooling & scalable full-stack systems</span>
+                Embedded Systems Engineer — <span className="text-[#fbbf24]">Expert in embedded systems & firmware development</span>
               </p>
             </div>
 
@@ -25,25 +25,28 @@ export default function Home() {
                 About
               </h2>
               <p className="text-sm text-white leading-relaxed mb-3">
-                I'm a full-stack engineer with a passion for creating elegant solutions 
-                to complex problems. I enjoy working with modern technologies and 
-                building applications that make a difference.
+                Expert in embedded systems development with deep expertise across the entire embedded stack. 
+                From low-level firmware to system architecture, I can handle anything embedded — hardware interfacing, 
+                real-time systems, device drivers, and embedded software optimization.
               </p>
               <p className="text-sm text-white leading-relaxed">
-                Key technologies: <span className="text-[#86efac]">Python</span>, <span className="text-[#86efac]">TypeScript</span>, <span className="text-[#86efac]">React/Next.js</span>, <span className="text-[#86efac]">Postgres</span>, <span className="text-[#86efac]">Docker</span>, <span className="text-[#86efac]">AWS</span>
+                Specialized in: <span className="text-[#86efac]">Embedded C/C++</span>, <span className="text-[#86efac]">ARM Cortex</span>, <span className="text-[#86efac]">RTOS</span>, <span className="text-[#86efac]">IoT</span>, <span className="text-[#86efac]">Microcontrollers</span>, <span className="text-[#86efac]">Firmware</span>
               </p>
             </div>
 
             <div>
               <p className="text-sm text-white mb-4">
-                Would love to collaborate or chat! Reach me at <a href="mailto:your@email.com" className="text-[#fb923c] hover:underline">your@email.com</a>
+                Would love to collaborate or chat! Reach me at <a href="mailto:jeeveshsrivastava18@gmail.com" className="text-[#fb923c] hover:underline">jeeveshsrivastava18@gmail.com</a>
               </p>
-              <div className="flex gap-4">
-                <a href="#" className="text-white hover:text-[#60a5fa] transition-colors">📧</a>
-                <a href="#" className="text-white hover:text-[#60a5fa] transition-colors">📱</a>
-                <a href="#" className="text-white hover:text-[#60a5fa] transition-colors">🔗</a>
-                <a href="#" className="text-white hover:text-[#60a5fa] transition-colors">💼</a>
+              <div className="flex gap-4 mb-2">
+                <a href="mailto:jeeveshsrivastava18@gmail.com" className="text-white hover:text-[#60a5fa] transition-colors" title="Email">📧</a>
+                <a href="tel:+919211595966" className="text-white hover:text-[#60a5fa] transition-colors" title="Phone">📱</a>
+                <a href="https://www.linkedin.com/in/jeevesh9" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#60a5fa] transition-colors" title="LinkedIn">💼</a>
+                <a href="https://github.com/jk1806" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#60a5fa] transition-colors" title="GitHub">🔗</a>
               </div>
+              <p className="text-xs text-gray-400">
+                Phone: <a href="tel:+919211595966" className="text-[#fb923c] hover:underline">+91 9211595966</a>
+              </p>
             </div>
           </div>
 
