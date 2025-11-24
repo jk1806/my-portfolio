@@ -7,14 +7,14 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <article className="group">
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 py-6 border-b border-gray-200 dark:border-gray-800 last:border-0">
+    <article>
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
         <div className="flex-1">
           <div className="flex items-start justify-between gap-4 mb-1">
-            <h2 className="text-lg font-normal text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors">
+            <h2 className="text-base font-normal text-gray-900 dark:text-gray-100">
               {project.title}
             </h2>
-            <div className="flex items-center gap-3 flex-shrink-0">
+            <div className="flex items-center gap-4 flex-shrink-0">
               {project.githubUrl && (
                 <Link
                   href={project.githubUrl}
@@ -37,10 +37,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               )}
             </div>
           </div>
-          <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-2">
+          <p className="text-sm text-gray-600 dark:text-gray-400 leading-normal mb-1.5">
             {project.description}
           </p>
-          <div className="flex flex-wrap gap-x-3 gap-y-1">
+          <div className="flex flex-wrap gap-x-2.5">
             {project.technologies.map((tech, index) => (
               <span
                 key={tech}

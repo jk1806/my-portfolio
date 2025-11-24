@@ -9,13 +9,13 @@ export default function Navbar() {
   const isActive = (path: string) => pathname === path
 
   return (
-    <nav className="border-b border-gray-200 dark:border-gray-800">
-      <div className="mx-auto max-w-3xl px-6 lg:px-8">
-        <div className="flex h-14 items-center justify-between">
+    <nav className="bg-white dark:bg-black border-b border-gray-200 dark:border-gray-900">
+      <div className="mx-auto max-w-2xl px-6 lg:px-8">
+        <div className="flex h-12 items-center justify-between">
           <div className="flex items-center">
             <Link
               href="/"
-              className="text-base font-normal text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
+              className="text-sm font-normal text-gray-900 dark:text-gray-100 hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
             >
               Portfolio
             </Link>
@@ -25,8 +25,8 @@ export default function Navbar() {
               href="/"
               className={`text-sm font-normal transition-colors ${
                 isActive('/')
-                  ? 'text-gray-900 dark:text-white'
-                  : 'text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white'
+                  ? 'text-gray-900 dark:text-gray-100'
+                  : 'text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-300'
               }`}
             >
               Home
@@ -35,8 +35,8 @@ export default function Navbar() {
               href="/projects"
               className={`text-sm font-normal transition-colors ${
                 isActive('/projects')
-                  ? 'text-gray-900 dark:text-white'
-                  : 'text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white'
+                  ? 'text-gray-900 dark:text-gray-100'
+                  : 'text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-300'
               }`}
             >
               Projects

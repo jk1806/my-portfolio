@@ -2,14 +2,14 @@ import Link from 'next/link'
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white dark:bg-black">
       {/* Hero Section */}
-      <section className="px-6 py-20 md:py-28 lg:px-8">
-        <div className="mx-auto max-w-3xl">
-          <h1 className="text-2xl font-normal tracking-tight text-gray-900 dark:text-white mb-4">
+      <section className="px-6 py-12 lg:px-8">
+        <div className="mx-auto max-w-2xl">
+          <h1 className="text-lg font-normal text-gray-900 dark:text-gray-100 mb-3">
             Software Engineer
           </h1>
-          <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400 mb-6">
+          <p className="text-sm leading-normal text-gray-600 dark:text-gray-400 mb-4">
             Building modern web applications and digital experiences. 
             Passionate about clean code, user experience, and continuous learning.
           </p>
@@ -25,12 +25,12 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="px-6 py-16 lg:px-8 border-t border-gray-200 dark:border-gray-800">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="text-xl font-normal tracking-tight text-gray-900 dark:text-white mb-4">
+      <section id="about" className="px-6 py-12 lg:px-8 border-t border-gray-200 dark:border-gray-900">
+        <div className="mx-auto max-w-2xl">
+          <h2 className="text-lg font-normal text-gray-900 dark:text-gray-100 mb-3">
             About
           </h2>
-          <div className="space-y-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+          <div className="space-y-2.5 text-sm leading-normal text-gray-600 dark:text-gray-400">
             <p>
               I'm a software engineer with a passion for creating elegant solutions 
               to complex problems. I enjoy working with modern technologies and 
