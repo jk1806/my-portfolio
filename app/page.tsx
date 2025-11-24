@@ -1,48 +1,77 @@
 import Link from 'next/link'
+import { projects } from '@/data/projects'
+import ProjectCard from '@/components/ProjectCard'
 
 export default function Home() {
-  return (
-    <div className="min-h-screen bg-white dark:bg-black">
-      {/* Hero Section */}
-      <section className="px-6 py-12 lg:px-8">
-        <div className="mx-auto max-w-2xl">
-          <h1 className="text-lg font-normal text-gray-900 dark:text-gray-100 mb-3">
-            Software Engineer
-          </h1>
-          <p className="text-sm leading-normal text-gray-600 dark:text-gray-400 mb-4">
-            Building modern web applications and digital experiences. 
-            Passionate about clean code, user experience, and continuous learning.
-          </p>
-          <div className="flex items-center gap-6">
-            <Link
-              href="/projects"
-              className="text-sm text-gray-500 dark:text-gray-500 hover:text-gray-900 dark:hover:text-gray-300 transition-colors"
-            >
-              Projects →
-            </Link>
-          </div>
-        </div>
-      </section>
+  const featuredProjects = projects.slice(0, 4)
 
-      {/* About Section */}
-      <section id="about" className="px-6 py-12 lg:px-8 border-t border-gray-200 dark:border-gray-900">
-        <div className="mx-auto max-w-2xl">
-          <h2 className="text-lg font-normal text-gray-900 dark:text-gray-100 mb-3">
-            About
-          </h2>
-          <div className="space-y-2.5 text-sm leading-normal text-gray-600 dark:text-gray-400">
-            <p>
-              I'm a software engineer with a passion for creating elegant solutions 
-              to complex problems. I enjoy working with modern technologies and 
-              building applications that make a difference.
-            </p>
-            <p>
-              When I'm not coding, you can find me exploring new technologies, 
-              contributing to open source, or sharing knowledge with the developer community.
-            </p>
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-white">
+      <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Left Column - Personal Info */}
+          <div className="lg:col-span-1">
+            <div className="mb-8">
+              <h1 className="text-4xl font-normal text-[#60a5fa] mb-2">
+                Your Name
+              </h1>
+              <p className="text-base text-white mb-1">
+                Software engineer — <span className="text-[#fbbf24]">AI tooling & scalable full-stack systems</span>
+              </p>
+            </div>
+
+            <div className="mb-8">
+              <h2 className="text-xl font-normal text-[#60a5fa] mb-3">
+                About
+              </h2>
+              <p className="text-sm text-white leading-relaxed mb-3">
+                I'm a full-stack engineer with a passion for creating elegant solutions 
+                to complex problems. I enjoy working with modern technologies and 
+                building applications that make a difference.
+              </p>
+              <p className="text-sm text-white leading-relaxed">
+                Key technologies: <span className="text-[#86efac]">Python</span>, <span className="text-[#86efac]">TypeScript</span>, <span className="text-[#86efac]">React/Next.js</span>, <span className="text-[#86efac]">Postgres</span>, <span className="text-[#86efac]">Docker</span>, <span className="text-[#86efac]">AWS</span>
+              </p>
+            </div>
+
+            <div>
+              <p className="text-sm text-white mb-4">
+                Would love to collaborate or chat! Reach me at <a href="mailto:your@email.com" className="text-[#fb923c] hover:underline">your@email.com</a>
+              </p>
+              <div className="flex gap-4">
+                <a href="#" className="text-white hover:text-[#60a5fa] transition-colors">📧</a>
+                <a href="#" className="text-white hover:text-[#60a5fa] transition-colors">📱</a>
+                <a href="#" className="text-white hover:text-[#60a5fa] transition-colors">🔗</a>
+                <a href="#" className="text-white hover:text-[#60a5fa] transition-colors">💼</a>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column - Projects */}
+          <div className="lg:col-span-2">
+            <div className="space-y-8">
+              {featuredProjects.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </div>
+            <div className="mt-8">
+              <Link
+                href="/projects"
+                className="text-sm text-[#fb923c] hover:underline inline-flex items-center gap-1"
+              >
+                View All Projects →
+              </Link>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
+
+      {/* Wave Graphic */}
+      <div className="mt-16 w-full h-24 bg-gradient-to-b from-[#0a0a0a] to-[#14b8a6] opacity-20">
+        <svg className="w-full h-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M0,60 Q300,20 600,60 T1200,60 L1200,120 L0,120 Z" fill="#14b8a6" opacity="0.3"/>
+        </svg>
+      </div>
     </div>
   )
 }

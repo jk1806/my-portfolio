@@ -5,5 +5,7 @@ export interface Project {
   technologies: string[]
   githubUrl?: string
   liveUrl?: string
+  imageUrl?: string
+  tagColor?: 'green' | 'blue' | 'purple'
 }
 
