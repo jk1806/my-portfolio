@@ -25,18 +25,22 @@ export default function Home() {
                 About
               </h2>
               <p className="text-sm text-white leading-relaxed mb-3">
-                Expert in embedded systems development with deep expertise across the entire embedded stack. 
+                Expert in embedded systems development with 2+ years of deep expertise across the entire embedded stack. 
                 From low-level firmware to system architecture, I can handle anything embedded — hardware interfacing, 
                 real-time systems, device drivers, and embedded software optimization.
               </p>
               <p className="text-sm text-white leading-relaxed mb-3">
-                Specialized in <span className="text-[#86efac]">SoC (System-on-Chip)</span> design and development, 
-                <span className="text-[#86efac]"> networking protocols</span> including <span className="text-[#86efac]">802.11 (Wi-Fi)</span> technologies, 
-                <span className="text-[#86efac]"> L2/L3 OSI layers</span> implementation, <span className="text-[#86efac]">automotive embedded systems</span>, 
-                and <span className="text-[#86efac]">security technologies</span> for embedded platforms.
+                Specialized in <span className="text-[#86efac]">SoC (System-on-Chip)</span> design, 
+                <span className="text-[#86efac]"> PCIe protocols</span> (4.0/5.0/6.0), 
+                <span className="text-[#86efac]"> networking stacks</span> (L2/L3/L4 OSI layers, Ethernet, IP, TCP), 
+                <span className="text-[#86efac]"> 802.11 Wi-Fi</span> with WPA3 security, 
+                <span className="text-[#86efac]"> automotive systems</span> (ISO 26262, AUTOSAR, UDS, DoIP), 
+                <span className="text-[#86efac]"> secure boot</span> with TPM integration, 
+                <span className="text-[#86efac]"> RTOS</span> (FreeRTOS, Zephyr, ThreadX), and 
+                <span className="text-[#86efac]"> device drivers</span> with zero-copy DMA architectures.
               </p>
               <p className="text-sm text-white leading-relaxed">
-                Core technologies: <span className="text-[#86efac]">Embedded C/C++</span>, <span className="text-[#86efac]">ARM Cortex</span>, <span className="text-[#86efac]">RTOS</span>, <span className="text-[#86efac]">SoC</span>, <span className="text-[#86efac]">802.11/Wi-Fi</span>, <span className="text-[#86efac]">Networking</span>, <span className="text-[#86efac]">Automotive</span>, <span className="text-[#86efac]">Security</span>, <span className="text-[#86efac]">IoT</span>, <span className="text-[#86efac]">Microcontrollers</span>
+                Core expertise: <span className="text-[#86efac]">Embedded C/C++</span>, <span className="text-[#86efac]">ARM Cortex-M/A</span>, <span className="text-[#86efac]">RTOS</span>, <span className="text-[#86efac]">SoC</span>, <span className="text-[#86efac]">PCIe</span>, <span className="text-[#86efac]">802.11/Wi-Fi</span>, <span className="text-[#86efac]">BLE</span>, <span className="text-[#86efac]">L2/L3/L4 Networking</span>, <span className="text-[#86efac]">Automotive</span>, <span className="text-[#86efac]">Security</span>, <span className="text-[#86efac]">Python</span>, <span className="text-[#86efac]">Linux Embedded</span>
               </p>
             </div>
 
