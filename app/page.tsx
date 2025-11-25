@@ -27,20 +27,26 @@ export default function Home() {
               <p className="text-sm text-white leading-relaxed mb-3">
                 Expert in embedded systems development with 2+ years of deep expertise across the entire embedded stack. 
                 From low-level firmware to system architecture, I can handle anything embedded — hardware interfacing, 
-                real-time systems, device drivers, and embedded software optimization.
+                real-time systems, device drivers, embedded software optimization, RF hardware design, manufacturing compliance, 
+                testing & quality assurance, and DevOps for embedded devices.
               </p>
               <p className="text-sm text-white leading-relaxed mb-3">
                 Specialized in <span className="text-[#86efac]">SoC (System-on-Chip)</span> design, 
                 <span className="text-[#86efac]"> PCIe protocols</span> (4.0/5.0/6.0), 
-                <span className="text-[#86efac]"> networking stacks</span> (L2/L3/L4 OSI layers, Ethernet, IP, TCP), 
+                <span className="text-[#86efac]"> networking stacks</span> (L2/L3/L4 OSI layers, Ethernet, IP, TCP, lwIP), 
                 <span className="text-[#86efac]"> 802.11 Wi-Fi</span> with WPA3 security, 
-                <span className="text-[#86efac]"> automotive systems</span> (ISO 26262, AUTOSAR, UDS, DoIP), 
+                <span className="text-[#86efac]"> automotive systems</span> (ISO 26262, ISO 21434, AUTOSAR, UDS, DoIP, FlexRay, MOST, AVB/TSN), 
                 <span className="text-[#86efac]"> secure boot</span> with TPM integration, 
-                <span className="text-[#86efac]"> RTOS</span> (FreeRTOS, Zephyr, ThreadX), and 
-                <span className="text-[#86efac]"> device drivers</span> with zero-copy DMA architectures.
+                <span className="text-[#86efac]"> RTOS</span> (FreeRTOS, Zephyr, ThreadX), 
+                <span className="text-[#86efac]"> device drivers</span> with zero-copy DMA, 
+                <span className="text-[#86efac]"> wireless protocols</span> (BLE, LoRaWAN, Zigbee, Thread, Matter, NB-IoT), 
+                <span className="text-[#86efac]"> IoT protocols</span> (MQTT, CoAP, HTTP/2, WebSockets, QUIC, TLS/DTLS), 
+                <span className="text-[#86efac]"> communication protocols</span> (CAN, I2C, SPI, UART, LIN, USB), 
+                <span className="text-[#86efac]"> RF hardware</span> (antenna design, EMI/EMC, PCB design), and 
+                <span className="text-[#86efac]"> middleware</span> (DDS, CORBA, MQTT broker).
               </p>
               <p className="text-sm text-white leading-relaxed">
-                Core expertise: <span className="text-[#86efac]">Embedded C/C++</span>, <span className="text-[#86efac]">ARM Cortex-M/A</span>, <span className="text-[#86efac]">RTOS</span>, <span className="text-[#86efac]">SoC</span>, <span className="text-[#86efac]">PCIe</span>, <span className="text-[#86efac]">802.11/Wi-Fi</span>, <span className="text-[#86efac]">BLE</span>, <span className="text-[#86efac]">L2/L3/L4 Networking</span>, <span className="text-[#86efac]">Automotive</span>, <span className="text-[#86efac]">Security</span>, <span className="text-[#86efac]">Python</span>, <span className="text-[#86efac]">Linux Embedded</span>
+                Core expertise: <span className="text-[#86efac]">Embedded C/C++</span>, <span className="text-[#86efac]">ARM Cortex-M/A</span>, <span className="text-[#86efac]">RTOS</span>, <span className="text-[#86efac]">SoC</span>, <span className="text-[#86efac]">PCIe</span>, <span className="text-[#86efac]">802.11/Wi-Fi</span>, <span className="text-[#86efac]">BLE</span>, <span className="text-[#86efac]">L2/L3/L4 Networking</span>, <span className="text-[#86efac]">Automotive</span>, <span className="text-[#86efac]">Security</span>, <span className="text-[#86efac]">IoT</span>, <span className="text-[#86efac]">Python</span>, <span className="text-[#86efac]">Linux Embedded</span>, <span className="text-[#86efac]">RF Hardware</span>, <span className="text-[#86efac]">Testing</span>, <span className="text-[#86efac]">DevOps</span>
               </p>
             </div>
 
