@@ -26,12 +26,15 @@ export default function Home() {
               </h2>
               <p className="text-sm text-white leading-relaxed mb-3">
                 Expert in embedded systems development with 2+ years of deep expertise across the entire embedded stack. 
-                From low-level firmware to system architecture, I can handle anything embedded — hardware interfacing, 
-                real-time systems, device drivers, embedded software optimization, RF hardware design, manufacturing compliance, 
-                testing & quality assurance, and DevOps for embedded devices.
+                From low-level firmware to system architecture, I can handle anything embedded — BSP development, boot bringup, 
+                kernel development, hardware interfacing, real-time systems, device drivers, embedded software optimization, 
+                RF hardware design, manufacturing compliance, testing & quality assurance, and DevOps for embedded devices.
               </p>
               <p className="text-sm text-white leading-relaxed mb-3">
                 Specialized in <span className="text-[#86efac]">SoC (System-on-Chip)</span> design, 
+                <span className="text-[#86efac]"> BSP (Board Support Package)</span> development with HAL, 
+                <span className="text-[#86efac]"> boot bringup</span> (U-Boot, SPL/TPL, secure boot, DFU, fastboot), 
+                <span className="text-[#86efac]"> kernel development</span> (Linux kernel internals, device drivers, memory management, system calls), 
                 <span className="text-[#86efac]"> PCIe protocols</span> (4.0/5.0/6.0), 
                 <span className="text-[#86efac]"> networking stacks</span> (L2/L3/L4 OSI layers, Ethernet, IP, TCP, lwIP), 
                 <span className="text-[#86efac]"> 802.11 Wi-Fi</span> with WPA3 security, 
@@ -46,7 +49,7 @@ export default function Home() {
                 <span className="text-[#86efac]"> middleware</span> (DDS, CORBA, MQTT broker).
               </p>
               <p className="text-sm text-white leading-relaxed">
-                Core expertise: <span className="text-[#86efac]">Embedded C/C++</span>, <span className="text-[#86efac]">ARM Cortex-M/A</span>, <span className="text-[#86efac]">RTOS</span>, <span className="text-[#86efac]">SoC</span>, <span className="text-[#86efac]">PCIe</span>, <span className="text-[#86efac]">802.11/Wi-Fi</span>, <span className="text-[#86efac]">BLE</span>, <span className="text-[#86efac]">L2/L3/L4 Networking</span>, <span className="text-[#86efac]">Automotive</span>, <span className="text-[#86efac]">Security</span>, <span className="text-[#86efac]">IoT</span>, <span className="text-[#86efac]">Python</span>, <span className="text-[#86efac]">Linux Embedded</span>, <span className="text-[#86efac]">RF Hardware</span>, <span className="text-[#86efac]">Testing</span>, <span className="text-[#86efac]">DevOps</span>
+                Core expertise: <span className="text-[#86efac]">Embedded C/C++</span>, <span className="text-[#86efac]">ARM Cortex-M/A</span>, <span className="text-[#86efac]">RTOS</span>, <span className="text-[#86efac]">BSP</span>, <span className="text-[#86efac]">Boot Bringup</span>, <span className="text-[#86efac]">Kernel Development</span>, <span className="text-[#86efac]">SoC</span>, <span className="text-[#86efac]">PCIe</span>, <span className="text-[#86efac]">802.11/Wi-Fi</span>, <span className="text-[#86efac]">BLE</span>, <span className="text-[#86efac]">L2/L3/L4 Networking</span>, <span className="text-[#86efac]">Automotive</span>, <span className="text-[#86efac]">Security</span>, <span className="text-[#86efac]">IoT</span>, <span className="text-[#86efac]">Python</span>, <span className="text-[#86efac]">Linux Embedded</span>, <span className="text-[#86efac]">RF Hardware</span>, <span className="text-[#86efac]">Testing</span>, <span className="text-[#86efac]">DevOps</span>
               </p>
             </div>
 
