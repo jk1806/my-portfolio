@@ -1,16 +1,17 @@
 /**
- * Secure Boot Implementation
+ * Secure Boot - WIP
  * Author: Jeevesh Srivastava
  * 
- * Comprehensive secure boot implementation with TPM integration,
- * hardware root of trust, and cryptographic verification.
+ * Implementing secure boot chain with TPM
+ * TODO: need to test with actual hardware
+ * FIXME: signature verification is slow, need optimization
  */
 
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
-#include "crypto.h"
-#include "tpm.h"
+#include "crypto.h"  // our crypto lib
+#include "tpm.h"     // TPM driver
 
 /* Secure Boot Configuration */
 #define BOOT_SIGNATURE_SIZE    256
@@ -33,12 +34,14 @@ int verify_hardware_rot(void)
     rot_status = read_reg(HW_ROT_STATUS_REG);
     
     if (!(rot_status & HW_ROT_ENABLED)) {
-        return -1; /* Hardware RoT not enabled */
+        return -1; /* Hardware RoT not enabled - check fuse settings */
     }
     
     if (!(rot_status & HW_ROT_VALID)) {
-        return -2; /* Hardware RoT invalid */
+        return -2; /* Hardware RoT invalid - might be first boot */
     }
+    
+    // XXX: need to handle case where RoT is being programmed
     
     return 0;
 }
@@ -50,19 +53,22 @@ int tpm_verify_boot_chain(void)
     uint8_t expected_pcr[32];
     int ret;
     
-    /* Read PCR 7 (boot measurements) */
+    /* Read PCR 7 (boot measurements) - using SHA256 */
     ret = tpm_pcr_read(TPM_PCR_BOOT, pcr_value);
     if (ret != 0) {
+        // TPM might not be initialized yet
         return -1;
     }
     
     /* Calculate expected PCR value from boot measurements */
-    calculate_expected_pcr(expected_pcr);
+    calculate_expected_pcr(expected_pcr);  // TODO: verify this calculation
     
     /* Compare PCR values */
     if (memcmp(pcr_value, expected_pcr, 32) != 0) {
-        return -2; /* PCR mismatch - boot chain compromised */
+        return -2; /* PCR mismatch - boot chain compromised or first boot */
     }
+    
+    // FIXME: should log this for audit trail
     
     return 0;
 }

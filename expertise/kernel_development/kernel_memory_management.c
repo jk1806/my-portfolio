@@ -1,9 +1,10 @@
 /**
- * Linux Kernel Memory Management
+ * Kernel memory management examples
  * Author: Jeevesh Srivastava
  * 
- * Comprehensive kernel memory management examples demonstrating
- * expertise in page allocator, slab allocator, and memory optimization.
+ * Learning and testing different memory allocation methods
+ * TODO: add examples for get_free_pages
+ * NOTE: be careful with vmalloc in interrupt context
  */
 
 #include <linux/module.h>
@@ -25,14 +26,16 @@ void* allocate_pages_example(void)
     void *virt_addr;
     
     /* Allocate 2^order pages (order 0 = 1 page, order 1 = 2 pages, etc.) */
-    page = alloc_pages(GFP_KERNEL | __GFP_ZERO, 0);
+    page = alloc_pages(GFP_KERNEL | __GFP_ZERO, 0);  // single page
     if (!page) {
-        pr_err("Failed to allocate pages\n");
+        pr_err("Failed to allocate pages\n");  // might fail under memory pressure
         return NULL;
     }
     
     /* Convert page to virtual address */
-    virt_addr = page_address(page);
+    virt_addr = page_address(page);  // only works for lowmem
+    
+    // FIXME: should handle highmem case
     
     return virt_addr;
 }
@@ -64,17 +67,20 @@ void* kmalloc_aligned_example(size_t size, size_t alignment)
 {
     void *ptr;
     
-    /* Allocate aligned memory */
+    /* Allocate aligned memory - kmalloc is already aligned to cache line */
     ptr = kmalloc(size, GFP_KERNEL | __GFP_ZERO);
     if (!ptr) {
         return NULL;
     }
     
-    /* Ensure alignment */
+    /* Ensure alignment - this check might not be needed */
     if ((unsigned long)ptr % alignment != 0) {
+        pr_warn("Unaligned pointer, might cause issues\n");
         kfree(ptr);
         return NULL;
     }
+    
+    // TODO: use kmem_cache for better alignment control
     
     return ptr;
 }

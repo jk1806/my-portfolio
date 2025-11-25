@@ -1,23 +1,24 @@
 /**
- * Linux Kernel Module Example
+ * Test kernel module - learning sysfs and procfs
  * Author: Jeevesh Srivastava
  * 
- * Comprehensive kernel module demonstrating module development,
- * initialization, cleanup, and parameter handling.
+ * Simple module to test module parameters and sysfs
+ * TODO: add more sysfs attributes
+ * FIXME: procfs is deprecated, should use sysfs only
  */
 
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
 #include <linux/fs.h>
-#include <linux/proc_fs.h>
+#include <linux/proc_fs.h>  // deprecated but still useful
 #include <linux/sysfs.h>
 #include <linux/kobject.h>
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Jeevesh Srivastava");
-MODULE_DESCRIPTION("Advanced Kernel Module Example");
-MODULE_VERSION("1.0");
+MODULE_DESCRIPTION("Test Kernel Module");
+MODULE_VERSION("0.2");
 
 /* Module parameters */
 static int debug_level = 1;
@@ -103,12 +104,16 @@ static int __init module_init_function(void)
     pr_info("Device name: %s\n", device_name);
     pr_info("Feature enabled: %s\n", enable_feature ? "Yes" : "No");
     
-    module_load_count++;
+    module_load_count++;  // simple counter
     
-    /* Create proc entry */
+    // XXX: should check if module was already loaded
+    
+    /* Create proc entry - using old API for now */
     proc_entry = create_proc_entry("custom_module", 0644, NULL);
     if (proc_entry) {
         proc_entry->read_proc = proc_read;
+    } else {
+        pr_warn("Failed to create proc entry\n");  // not critical
     }
     
     /* Create sysfs entry */

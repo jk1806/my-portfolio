@@ -1,9 +1,10 @@
 /**
- * Linux Kernel Device Driver Example
+ * Custom device driver - work in progress
  * Author: Jeevesh Srivastava
  * 
- * Comprehensive character device driver demonstrating
- * kernel development expertise.
+ * Character device driver for our custom hardware
+ * TODO: add ioctl for configuration
+ * FIXME: interrupt handler needs locking
  */
 
 #include <linux/module.h>
@@ -19,15 +20,16 @@
 #include <linux/platform_device.h>
 #include <linux/io.h>
 #include <linux/mutex.h>
+#include <linux/wait.h>  // added for wait queues
 
 #define DEVICE_NAME "custom_device"
 #define DEVICE_CLASS "custom"
-#define MAX_DEVICES 4
+#define MAX_DEVICES 4  // might need to increase this
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Jeevesh Srivastava");
 MODULE_DESCRIPTION("Custom Character Device Driver");
-MODULE_VERSION("1.0");
+MODULE_VERSION("0.1");  // early version
 
 /* Device structure */
 struct custom_device {
@@ -36,8 +38,10 @@ struct custom_device {
     void __iomem *base_addr;
     int irq;
     struct mutex mutex;
+    wait_queue_head_t wait_queue;  // for blocking I/O
     unsigned long major;
     unsigned long minor;
+    // TODO: add buffer for DMA
 };
 
 static struct custom_device *devices[MAX_DEVICES];
@@ -57,17 +61,17 @@ static int device_open(struct inode *inode, struct file *file)
     
     dev = devices[minor];
     if (!dev) {
-        pr_err("Device not found for minor: %d\n", minor);
+        pr_err("Device not found for minor: %d\n", minor);  // shouldn't happen
         return -ENODEV;
     }
     
     file->private_data = dev;
     
     if (mutex_lock_interruptible(&dev->mutex)) {
-        return -ERESTARTSYS;
+        return -ERESTARTSYS;  // signal interrupted
     }
     
-    pr_info("Device opened: minor %d\n", minor);
+    pr_debug("Device opened: minor %d\n", minor);  // changed to debug level
     return 0;
 }
 
@@ -194,13 +198,15 @@ static irqreturn_t device_interrupt(int irq, void *dev_id)
     /* Read interrupt status */
     status = ioread32(dev->base_addr + INT_STATUS_REG);
     
-    /* Handle interrupts */
+    /* Handle interrupts - only handling data ready for now */
     if (status & INT_DATA_READY) {
         /* Process data ready interrupt */
-        wake_up_interruptible(&dev->wait_queue);
+        wake_up_interruptible(&dev->wait_queue);  // wake any blocked readers
     }
     
-    /* Clear interrupt */
+    // TODO: handle other interrupt types (error, overflow, etc)
+    
+    /* Clear interrupt - write 1 to clear */
     iowrite32(status, dev->base_addr + INT_CLEAR_REG);
     
     return IRQ_HANDLED;
@@ -263,22 +269,23 @@ static int device_probe(struct platform_device *pdev)
         goto err_cdev;
     }
     
-    /* Request interrupt */
+    /* Request interrupt - using shared for now */
     ret = request_irq(dev->irq, device_interrupt, IRQF_SHARED,
                       DEVICE_NAME, dev);
     if (ret) {
-        pr_err("Failed to request IRQ\n");
+        pr_err("Failed to request IRQ %d: %d\n", dev->irq, ret);
         goto err_device;
     }
     
     mutex_init(&dev->mutex);
+    init_waitqueue_head(&dev->wait_queue);  // forgot this initially
     dev->major = MAJOR(devt);
     dev->minor = minor;
     devices[minor] = dev;
     device_count++;
     
     platform_set_drvdata(pdev, dev);
-    pr_info("Device probed successfully: minor %d\n", minor);
+    pr_info("Device probed successfully: minor %d, IRQ %d\n", minor, dev->irq);
     
     return 0;
     

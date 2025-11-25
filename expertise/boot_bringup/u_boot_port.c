@@ -1,8 +1,9 @@
 /**
- * U-Boot Port and Customization
+ * U-Boot port for custom board
  * Author: Jeevesh Srivastava
  * 
- * Comprehensive U-Boot porting and customization for embedded platforms.
+ * Porting U-Boot 2023.04 to our custom platform
+ * FIXME: network boot still not working properly
  */
 
 #include <common.h>
@@ -19,13 +20,19 @@
 /* Board-specific initialization */
 int board_init(void)
 {
-    /* Initialize GPIO */
+    int ret;
+    
+    /* Initialize GPIO - needed for LEDs and reset pins */
     gpio_init();
     
-    /* Configure clocks */
-    clock_init();
+    /* Configure clocks - had to tweak this a few times */
+    ret = clock_init();
+    if (ret) {
+        printf("Clock init failed!\n");  // debug print
+        return ret;
+    }
     
-    /* Setup memory */
+    /* Setup memory - this was tricky, had to check datasheet */
     dram_init();
     
     return 0;
@@ -48,11 +55,13 @@ int board_late_init(void)
 {
     /* Set up environment variables */
     env_set("board_name", "custom-platform");
-    env_set("board_rev", "1.0");
+    env_set("board_rev", "1.0");  // TODO: read from hardware
     
-    /* Configure boot parameters */
+    /* Configure boot parameters - default boot from MMC */
     env_set("bootcmd", "mmc read ${loadaddr} ${kernel_offset} ${kernel_size}; "
                        "bootm ${loadaddr}");
+    
+    // FIXME: should check if MMC is available first
     
     return 0;
 }
@@ -63,18 +72,20 @@ int board_mmc_init(bd_t *bis)
     struct mmc *mmc;
     int ret;
     
-    /* Initialize MMC controller */
+    /* Initialize MMC controller - took a while to get this right */
     ret = mmc_init(bis);
     if (ret) {
-        printf("MMC init failed: %d\n", ret);
+        printf("MMC init failed: %d\n", ret);  // XXX: need better error handling
         return ret;
     }
     
     mmc = find_mmc_device(0);
     if (!mmc) {
-        printf("MMC device not found\n");
+        printf("MMC device not found\n");  // happens sometimes on cold boot
         return -1;
     }
+    
+    // TODO: add support for eMMC boot partition
     
     return 0;
 }
@@ -129,11 +140,13 @@ int fastboot_init(void)
 
 int fastboot_handle_command(const char *cmd, char *response)
 {
-    /* Handle fastboot commands */
+    /* Handle fastboot commands - basic implementation */
     if (strcmp(cmd, "getvar:version") == 0) {
-        strcpy(response, "OKAY0.4");
+        strcpy(response, "OKAY0.4");  // TODO: get actual version
         return 0;
     }
+    
+    // FIXME: need to implement more commands (flash, erase, etc)
     
     return -1;
 }
