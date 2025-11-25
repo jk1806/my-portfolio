@@ -1,0 +1,24 @@
+Boot test log - 2024-06-20
+
+U-Boot 2023.04 (Jun 20 2024 - 10:15:23 +0530)
+
+CPU:   Custom SoC
+Model: Custom Board
+DRAM:  512 MiB
+MMC:   MMC device 0 found
+Loading Environment from MMC... OK
+
+In:    serial
+Out:   serial
+Err:   serial
+Net:   eth0
+
+Hit any key to stop autoboot:  0
+=>
+
+Boot successful! Took about 3 seconds.
+
+Issues found:
+- Network not working yet
+- Boot time could be faster
+

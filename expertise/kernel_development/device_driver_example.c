@@ -266,8 +266,12 @@ static int device_probe(struct platform_device *pdev)
                             dev, DEVICE_NAME "%d", minor);
     if (IS_ERR(dev->dev)) {
         ret = PTR_ERR(dev->dev);
+        pr_err("device_create failed: %ld\n", PTR_ERR(dev->dev));
         goto err_cdev;
     }
+    
+    // TODO: add device attributes for sysfs
+    // device_create_file(dev->dev, &dev_attr_...);
     
     /* Request interrupt - using shared for now */
     ret = request_irq(dev->irq, device_interrupt, IRQF_SHARED,

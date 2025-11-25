@@ -108,39 +108,46 @@ int validate_boot_chain(void)
     /* Step 1: Verify Hardware Root of Trust */
     ret = verify_hardware_rot();
     if (ret != 0) {
+        printf("HW RoT verification failed: %d\n", ret);
         return -1;
     }
     
     /* Step 2: Verify Boot ROM */
     ret = verify_bootrom();
     if (ret != 0) {
+        printf("Boot ROM verification failed: %d\n", ret);
         return -2;
     }
     
     /* Step 3: Verify SPL/TPL */
     ret = verify_spl();
     if (ret != 0) {
+        printf("SPL verification failed: %d\n", ret);
         return -3;
     }
     
     /* Step 4: Verify U-Boot */
     ret = verify_uboot();
     if (ret != 0) {
+        printf("U-Boot verification failed: %d\n", ret);
         return -4;
     }
     
     /* Step 5: Verify Kernel */
     ret = verify_kernel();
     if (ret != 0) {
+        printf("Kernel verification failed: %d\n", ret);
         return -5;
     }
     
     /* Step 6: TPM attestation */
     ret = tpm_verify_boot_chain();
     if (ret != 0) {
+        printf("TPM verification failed: %d\n", ret);
         return -6;
     }
     
+    printf("Boot chain validated successfully\n");
     return 0;
 }
 

@@ -85,6 +85,8 @@ int hal_spi_set_mode(uint32_t spi_id, uint8_t mode);
 int hal_i2c_init(uint32_t i2c_id, uint32_t frequency);
 int hal_i2c_write(uint32_t i2c_id, uint8_t address, const uint8_t* data, size_t length);
 int hal_i2c_read(uint32_t i2c_id, uint8_t address, uint8_t* data, size_t length);
+// TODO: add 10-bit addressing support
+// FIXME: timeout handling needs work
 
 /* Platform-specific initialization */
 int hal_platform_init(void);
