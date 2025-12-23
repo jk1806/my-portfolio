@@ -25,7 +25,7 @@ export default function Home() {
                 About
               </h2>
               <p className="text-sm text-white leading-relaxed mb-3">
-                Expert in embedded systems development with 2+ years of deep expertise across the entire embedded stack. 
+                Expert in embedded systems development with 6+ years of deep expertise across the entire embedded stack. 
                 From low-level firmware to system architecture, I can handle anything embedded — BSP development, boot bringup, 
                 kernel development, hardware interfacing, real-time systems, device drivers, embedded software optimization, 
                 RF hardware design, manufacturing compliance, testing & quality assurance, and DevOps for embedded devices.
